@@ -1,43 +1,74 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://src/player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://jungleDirtTileset.tres" type="TileSet" id=3]
+[ext_resource path="res://Sprites/oldPlayer/Idle0.tex" type="Texture" id=2]
+[ext_resource path="res://Sprites/oldPlayer/Run0.tex" type="Texture" id=3]
+[ext_resource path="res://Sprites/oldPlayer/Run1.tex" type="Texture" id=4]
+[ext_resource path="res://Sprites/oldPlayer/Run2.tex" type="Texture" id=5]
+[ext_resource path="res://Sprites/oldPlayer/Run3.tex" type="Texture" id=6]
+[ext_resource path="res://Sprites/oldPlayer/Run4.tex" type="Texture" id=7]
+[ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=8]
+[ext_resource path="res://Sprites/oldPlayer/Jump1.tex" type="Texture" id=9]
+[ext_resource path="res://jungleDirtTileset.tres" type="TileSet" id=10]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
+extents = Vector2( 14, 28 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+} ]
 
 [node name="World" type="Node2D"]
 
 [node name="player" type="KinematicBody2D" parent="."]
 
-editor/display_folded = true
-transform/pos = Vector2( 320, 128 )
+transform/pos = Vector2( 672, 224 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 4 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Sprite" type="Sprite" parent="player"]
+[node name="Sprite" type="AnimatedSprite" parent="player"]
 
-texture = ExtResource( 2 )
+frames = SubResource( 2 )
+animation = "idle"
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 
-shape = SubResource( 1 )
+transform/pos = Vector2( 0, 4 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
 [node name="TileMap" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 10 )
 cell/size = Vector2( 32, 32 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -50,6 +81,9 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( 393222, 9, 393223, 10, 393224, 10, 393225, 10, 393226, 10, 393227, 10, 393228, 10, 393229, 10, 393230, 11, 458758, 12, 458759, 13, 458760, 13, 458761, 13, 458762, 13, 458763, 13, 458764, 13, 458765, 13, 458766, 14, 524294, 15, 524295, 16, 524296, 16, 524297, 16, 524298, 16, 524299, 16, 524300, 16, 524301, 16, 524302, 17, 524303, 10, 524304, 10, 524305, 10, 524306, 10, 524307, 10, 524308, 10 )
+tile_data = IntArray( 851983, 9, 851984, 10, 851985, 10, 851986, 10, 851987, 10, 851988, 10, 851989, 10, 851990, 10, 851991, 10, 851992, 10, 851993, 10, 851994, 11, 917519, 12, 917520, 13, 917521, 13, 917522, 13, 917523, 13, 917524, 13, 917525, 13, 917526, 13, 917527, 13, 917528, 13, 917529, 13, 917530, 14, 983055, 15, 983056, 16, 983057, 16, 983058, 16, 983059, 16, 983060, 16, 983061, 16, 983062, 16, 983063, 16, 983064, 16, 983065, 16, 983066, 17 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 

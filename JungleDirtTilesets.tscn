@@ -134,7 +134,6 @@ _update_shape_index = 0
 
 [node name="4" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 64, 64 )
 texture = ExtResource( 1 )
 region = true
@@ -158,14 +157,12 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="4/StaticBody2D"]
 
-visibility/visible = false
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="5" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 128, 64 )
 texture = ExtResource( 1 )
 region = true

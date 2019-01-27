@@ -12,16 +12,23 @@ func _ready():
 
 func _fixed_process(delta):
 	motion.y += GRAVITY
-	
-	if is_move_and_slide_on_floor():
-		if Input.is_action_pressed("ui_up"):
-			motion.y = -JUMP_HEIGHT
 			
 	if Input.is_action_pressed("ui_left"):
 		motion.x = -SPEED
+		get_node("Sprite").set_flip_h(true)
+		get_node("Sprite").play("run")
 	elif Input.is_action_pressed("ui_right"):
 		motion.x =  SPEED
+		get_node("Sprite").set_flip_h(false)
+		get_node("Sprite").play("run")
 	else:
 		motion.x = 0
+		get_node("Sprite").play("idle")
+		
+	if is_move_and_slide_on_floor():
+		if Input.is_action_pressed("ui_up"):
+			motion.y = -JUMP_HEIGHT
+	else:
+		get_node("Sprite").play("jump")
 	
 	motion = move_and_slide(motion, UP)
