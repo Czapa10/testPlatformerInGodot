@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://src/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/oldPlayer/Idle0.tex" type="Texture" id=2]
@@ -9,12 +9,14 @@
 [ext_resource path="res://Sprites/oldPlayer/Run4.tex" type="Texture" id=7]
 [ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=8]
 [ext_resource path="res://Sprites/oldPlayer/Jump1.tex" type="Texture" id=9]
-[ext_resource path="res://jungleDirtTileset.tres" type="TileSet" id=10]
+[ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=10]
+[ext_resource path="res://jungleDirtTileset.tres" type="TileSet" id=11]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 14, 28 )
+radius = 14.0
+height = 28.0
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -32,6 +34,11 @@ animations = [ {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "falling",
 "speed": 5.0
 } ]
 
@@ -60,6 +67,7 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 
+visibility/visible = false
 transform/pos = Vector2( 0, 4 )
 shape = SubResource( 3 )
 trigger = false
@@ -68,7 +76,7 @@ _update_shape_index = 0
 [node name="TileMap" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 10 )
+tile_set = ExtResource( 11 )
 cell/size = Vector2( 32, 32 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -81,7 +89,7 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( 851983, 9, 851984, 10, 851985, 10, 851986, 10, 851987, 10, 851988, 10, 851989, 10, 851990, 10, 851991, 10, 851992, 10, 851993, 10, 851994, 11, 917519, 12, 917520, 13, 917521, 13, 917522, 13, 917523, 13, 917524, 13, 917525, 13, 917526, 13, 917527, 13, 917528, 13, 917529, 13, 917530, 14, 983055, 15, 983056, 16, 983057, 16, 983058, 16, 983059, 16, 983060, 16, 983061, 16, 983062, 16, 983063, 16, 983064, 16, 983065, 16, 983066, 17 )
+tile_data = IntArray( 458766, 9, 458767, 10, 458768, 10, 458769, 11, 524302, 15, 524303, 16, 524304, 16, 524305, 17, 655382, 9, 655383, 10, 655384, 536870921, 720918, 12, 720919, 13, 720920, 14, 786454, 12, 786455, 13, 786456, 14, 851983, 9, 851984, 10, 851985, 10, 851986, 10, 851987, 10, 851988, 10, 851989, 10, 851990, 13, 851991, 13, 851992, 13, 851993, 10, 851994, 11, 917519, 12, 917520, 13, 917521, 13, 917522, 13, 917523, 13, 917524, 13, 917525, 13, 917526, 13, 917527, 13, 917528, 13, 917529, 13, 917530, 14, 983055, 15, 983056, 16, 983057, 16, 983058, 16, 983059, 16, 983060, 16, 983061, 16, 983062, 16, 983063, 16, 983064, 16, 983065, 16, 983066, 17 )
 __meta__ = {
 "_edit_lock_": true
 }
