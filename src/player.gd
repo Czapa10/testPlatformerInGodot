@@ -7,14 +7,28 @@ const GRAVITY = 20
 const JUMP_HEIGHT = 700
 
 var motion = Vector2()
+var friction = false
 
 func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
 	motion.y += GRAVITY
-	var friction = false
+	friction = false
 			
+	walk()
+	
+	if is_move_and_slide_on_floor():
+		jump()
+	else:
+		fall()
+		slide()
+
+	motion = move_and_slide(motion, UP)
+	
+##############################################################################
+	
+func walk():
 	if Input.is_action_pressed("ui_left"):
 		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED)
 		
@@ -31,19 +45,19 @@ func _fixed_process(delta):
 		friction = true
 		get_node("Sprite").play("idle")
 	
-	
-	if is_move_and_slide_on_floor():
-		if Input.is_action_pressed("ui_up"):
+func jump():
+	if Input.is_action_pressed("ui_up"):
 			motion.y = -JUMP_HEIGHT
-		if friction == true:
-			motion.x = lerp(motion.x, 0, 0.2)
+	if friction == true:
+		motion.x = lerp(motion.x, 0, 0.2)
+		
+func fall():
+	if motion.y < 0:
+		get_node("Sprite").play("jump")
 	else:
-		if motion.y < 0:
-			get_node("Sprite").play("jump")
-		else:
-			get_node("Sprite").play("falling")
-			
-		if friction == true:
-			motion.x = lerp(motion.x, 0, 0.05)
-	
-	motion = move_and_slide(motion, UP)
+		get_node("Sprite").play("falling")
+		
+
+func slide():
+	if friction == true:
+		motion.x = lerp(motion.x, 0, 0.05)
