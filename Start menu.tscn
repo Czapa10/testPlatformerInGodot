@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://Start_menu.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/others/POOH__.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Sprites/others/Sky.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/others/POOH__.fnt" type="BitmapFont" id=3]
 
 [node name="Start menu" type="Control"]
 
@@ -31,6 +32,13 @@ margin/right = 0.0
 margin/bottom = 0.0
 use_top_left = false
 
+[node name="Sprite" type="Sprite" parent="CenterContainer"]
+
+transform/pos = Vector2( 640, 640 )
+transform/scale = Vector2( 2, 2 )
+z/z = -1415
+texture = ExtResource( 2 )
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 
 focus/ignore_mouse = false
@@ -50,10 +58,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = -50.0
+margin/top = -73.0
 margin/right = 429.0
 margin/bottom = 12.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "test platformer"
 percent_visible = 1.0
 lines_skipped = 0
@@ -69,7 +77,7 @@ margin/left = 0.0
 margin/top = 66.0
 margin/right = 429.0
 margin/bottom = 134.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -86,7 +94,7 @@ margin/left = 0.0
 margin/top = 138.0
 margin/right = 429.0
 margin/bottom = 206.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null

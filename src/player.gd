@@ -9,6 +9,9 @@ const JUMP_HEIGHT = 700
 var motion = Vector2()
 var friction = false
 
+var isFalling = false
+var startFallingValue
+
 func _ready():
 	set_fixed_process(true)
 
@@ -21,8 +24,9 @@ func _fixed_process(delta):
 	if is_move_and_slide_on_floor():
 		jump()
 	else:
-		fall()
-		slide()
+		jumpAndFall()
+		
+	takeFallDamage()
 
 	motion = move_and_slide(motion, UP)
 	
@@ -51,13 +55,28 @@ func jump():
 	if friction == true:
 		motion.x = lerp(motion.x, 0, 0.2)
 		
-func fall():
+func jumpAndFall():
 	if motion.y < 0:
 		get_node("Sprite").play("jump")
 	else:
 		get_node("Sprite").play("falling")
 		
+	slide()
+		
 
 func slide():
 	if friction == true:
 		motion.x = lerp(motion.x, 0, 0.05)
+		
+
+func takeFallDamage():
+	if is_move_and_slide_on_floor():
+		if isFalling:
+			print("pixels of falling: ",get_pos().y - startFallingValue)
+			isFalling = false
+	else:
+		if motion.y > 0 && !isFalling:
+			isFalling = true
+			startFallingValue = get_pos().y
+		
+	pass

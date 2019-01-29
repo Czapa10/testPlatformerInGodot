@@ -33,6 +33,8 @@ transform/pos = Vector2( 384, 384 )
 
 [node name="portals" type="Node" parent="."]
 
+editor/display_folded = true
+
 [node name="Portal4" parent="portals" instance=ExtResource( 3 )]
 
 editor/display_folded = false
