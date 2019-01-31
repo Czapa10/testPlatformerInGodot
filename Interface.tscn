@@ -1,7 +1,4 @@
-[gd_scene load_steps=3 format=1]
-
-[ext_resource path="res://Sprites/others/POOH__.fnt" type="BitmapFont" id=1]
-[ext_resource path="res://Sprites/Interface/lifeBarBackground.png" type="Texture" id=2]
+[gd_scene format=1]
 
 [node name="Interface" type="Control"]
 
@@ -9,41 +6,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 32.0
-margin/top = 0.0
-margin/right = 256.0
-margin/bottom = 64.0
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0.46875, 0.46875, 0.46875, 1 )
-range/min = 0.0
-range/max = 100.0
-range/step = 1.0
-range/page = 0.0
-range/value = 100.0
-range/exp_edit = false
-range/rounded = false
-percent/visible = true
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="ProgressBar"]
-
-transform/pos = Vector2( 110.848, 32 )
-transform/scale = Vector2( 2.304, 1 )
-z/z = -74
-texture = ExtResource( 2 )
+margin/left = 320.0
+margin/top = 832.0
+margin/right = 960.0
+margin/bottom = 1216.0
 
 
