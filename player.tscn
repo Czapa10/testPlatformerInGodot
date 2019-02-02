@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://src/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/oldPlayer/Idle0.tex" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=9]
 [ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=10]
 [ext_resource path="res://Sprites/others/Sky.png" type="Texture" id=11]
+[ext_resource path="res://PauseScreen.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -120,5 +121,7 @@ offset = Vector2( -100, -100 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="PauseLayer" parent="." instance=ExtResource( 12 )]
 
 

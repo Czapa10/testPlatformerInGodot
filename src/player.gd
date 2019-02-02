@@ -72,7 +72,6 @@ func slide():
 func takeFallDamage():
 	if is_move_and_slide_on_floor():
 		if isFalling:
-			print("pixels of falling: ",get_pos().y - startFallingValue)
 			if get_pos().y - startFallingValue > 550:
 				get_tree().change_scene("res://GameOverScreen.tscn")
 			isFalling = false
