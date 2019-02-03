@@ -7,7 +7,6 @@ func _input(event):
 	if event.is_action_pressed("pause"):
 		switchingBetweenPauseAndGame()
 
-				
 func _on_ResumeButton_pressed():
 	switchingBetweenPauseAndGame()
 
@@ -20,4 +19,5 @@ func switchingBetweenPauseAndGame():
 
 
 func _on_MainMenuButton1_pressed():
+	get_tree().set_pause(false)
 	get_tree().change_scene("res://Start menu.tscn")
