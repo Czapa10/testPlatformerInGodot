@@ -14,6 +14,7 @@ transform/pos = Vector2( 160, 1376 )
 
 [node name="TileMap" type="TileMap" parent="."]
 
+z/z = -10
 mode = 0
 tile_set = ExtResource( 2 )
 cell/size = Vector2( 32, 32 )
@@ -49,6 +50,8 @@ transform/pos = Vector2( 512, 1440 )
 transform/pos = Vector2( 512, 384 )
 
 [node name="ballRain" type="Node" parent="."]
+
+editor/display_folded = true
 
 [node name="ball1" parent="ballRain" instance=ExtResource( 5 )]
 
