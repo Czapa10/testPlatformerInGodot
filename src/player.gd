@@ -6,6 +6,7 @@ const ACCELERATION = 50
 const GRAVITY = 20
 const JUMP_HEIGHT = 700
 
+var life = 100
 var motion = Vector2()
 var friction = false
 
@@ -72,10 +73,22 @@ func slide():
 func takeFallDamage():
 	if is_move_and_slide_on_floor():
 		if isFalling:
-			if get_pos().y - startFallingValue > 550:
-				get_tree().change_scene("res://GameOverScreen.tscn")
+			if get_pos().y - startFallingValue > 300:
+				life -= (get_pos().y - startFallingValue - 300) / 3.5
+				if life < 0:
+					life = 0
+				
+				get_node("Interface/IntrefaceHolder/bars/life/heartCounter/CenterContainer/Label").set_text(str(int(life) ) )
+				get_node("Interface/IntrefaceHolder/bars/life/ProgressBar").set_value(life)
+			
+			if life <= 0:
+				get_node("Timer").start()
+				
 			isFalling = false
 	else:
 		if motion.y > 0 && !isFalling:
 			isFalling = true
 			startFallingValue = get_pos().y
+
+func _on_Timer_timeout():
+	get_tree().change_scene("res://GameOverScreen.tscn")

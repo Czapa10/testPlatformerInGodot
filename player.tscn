@@ -3,13 +3,13 @@
 [ext_resource path="res://src/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/oldPlayer/Idle0.tex" type="Texture" id=2]
 [ext_resource path="res://Sprites/oldPlayer/Jump1.tex" type="Texture" id=3]
-[ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=4]
-[ext_resource path="res://Sprites/oldPlayer/Run0.tex" type="Texture" id=5]
-[ext_resource path="res://Sprites/oldPlayer/Run1.tex" type="Texture" id=6]
-[ext_resource path="res://Sprites/oldPlayer/Run2.tex" type="Texture" id=7]
-[ext_resource path="res://Sprites/oldPlayer/Run3.tex" type="Texture" id=8]
-[ext_resource path="res://Sprites/oldPlayer/Run4.tex" type="Texture" id=9]
-[ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=10]
+[ext_resource path="res://Sprites/oldPlayer/Run0.tex" type="Texture" id=4]
+[ext_resource path="res://Sprites/oldPlayer/Run1.tex" type="Texture" id=5]
+[ext_resource path="res://Sprites/oldPlayer/Run2.tex" type="Texture" id=6]
+[ext_resource path="res://Sprites/oldPlayer/Run3.tex" type="Texture" id=7]
+[ext_resource path="res://Sprites/oldPlayer/Run4.tex" type="Texture" id=8]
+[ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=9]
+[ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=10]
 [ext_resource path="res://Sprites/others/Sky.png" type="Texture" id=11]
 [ext_resource path="res://PauseScreen.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Interface.tscn" type="PackedScene" id=13]
@@ -33,15 +33,15 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "falling",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
 } ]
 
 [node name="player" type="KinematicBody2D"]
@@ -137,4 +137,22 @@ margin/top = -200.0
 margin/right = 960.0
 margin/bottom = -104.0
 
+[node name="ProgressBar" parent="Interface/IntrefaceHolder/bars/life"]
 
+range/value = 100.0
+
+[node name="TextureFrame" parent="Interface/IntrefaceHolder/MarginContainer"]
+
+stretch_mode = 0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+
+[editable path="Interface"]
