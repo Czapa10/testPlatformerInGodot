@@ -3,8 +3,8 @@ extends KinematicBody2D
 const UP = Vector2(0, -1)
 const MAX_SPEED = 200
 const ACCELERATION = 50
-const GRAVITY = 20
-const JUMP_HEIGHT = 700
+const GRAVITY = 25
+const JUMP_HEIGHT = 780
 
 var life = 100
 var motion = Vector2()
@@ -30,6 +30,13 @@ func _fixed_process(delta):
 	takeFallDamage()
 
 	motion = move_and_slide(motion, UP)
+	
+	if get_pos().y > 2500:
+		set_pos(Vector2(get_pos().x, -2000))
+		
+		
+	if get_pos().y < -150 && get_pos().x > 2352:
+		set_pos(Vector2(1300 ,get_pos().y))
 	
 ##############################################################################
 	
@@ -73,8 +80,8 @@ func slide():
 func takeFallDamage():
 	if is_move_and_slide_on_floor():
 		if isFalling:
-			if get_pos().y - startFallingValue > 300:
-				life -= (get_pos().y - startFallingValue - 300) / 3.5
+			if get_pos().y - startFallingValue > 450:
+				life -= (get_pos().y - startFallingValue - 450) / 3.5
 				if life < 0:
 					life = 0
 				

@@ -95,34 +95,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="Sky" type="Sprite" parent="Camera2D"]
 
-layer = -1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-scroll/offset = Vector2( 0, 0 )
-scroll/base_offset = Vector2( 0, 0 )
-scroll/base_scale = Vector2( 1, 1 )
-scroll/limit_begin = Vector2( 0, 0 )
-scroll/limit_end = Vector2( 0, 0 )
-scroll/ignore_camera_zoom = false
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-
-motion/scale = Vector2( 0.5, 0.5 )
-motion/offset = Vector2( 0, 0 )
-motion/mirroring = Vector2( 0, 0 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sky" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-
-transform/scale = Vector2( 5, 5 )
+transform/pos = Vector2( -32, -32 )
+z/z = -100
 texture = ExtResource( 11 )
-centered = false
-offset = Vector2( -100, -100 )
+offset = Vector2( 32, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
