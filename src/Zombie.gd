@@ -20,10 +20,10 @@ func _fixed_process(delta):
 		moveState = RIGHT
 		
 	if moveState == RIGHT:
-		motion.x = 5
+		motion.x = 25
 		get_node("AnimatedSprite").set_flip_h(false)
 	elif moveState == LEFT:
-		motion.x = -5
+		motion.x = -25
 		get_node("AnimatedSprite").set_flip_h(true)
 	
 	move_and_slide(motion)

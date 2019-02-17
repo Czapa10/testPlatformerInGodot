@@ -12,6 +12,7 @@ var friction = false
 
 var isFalling = false
 var startFallingValue
+var isDied = false
 
 func _ready():
 	set_fixed_process(true)
@@ -19,6 +20,9 @@ func _ready():
 func _fixed_process(delta):
 	motion.y += GRAVITY
 	friction = false
+	
+	if isDied:
+		return
 			
 	walk()
 	
@@ -90,6 +94,8 @@ func takeFallDamage():
 			
 			if life <= 0:
 				get_node("Timer").start()
+				get_node("Sprite").play("died")
+				isDied = true
 				
 			isFalling = false
 	else:

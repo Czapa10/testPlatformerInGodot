@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://src/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/oldPlayer/Idle0.tex" type="Texture" id=2]
@@ -10,9 +10,10 @@
 [ext_resource path="res://Sprites/oldPlayer/Run4.tex" type="Texture" id=8]
 [ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=9]
 [ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=10]
-[ext_resource path="res://Sprites/others/Sky.png" type="Texture" id=11]
-[ext_resource path="res://PauseScreen.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Interface.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sprites/oldPlayer/blood.tex" type="Texture" id=11]
+[ext_resource path="res://Sprites/others/Sky.png" type="Texture" id=12]
+[ext_resource path="res://PauseScreen.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Interface.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -41,6 +42,11 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "falling",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "died",
 "speed": 5.0
 } ]
 
@@ -99,15 +105,15 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 z/z = -100
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( 32, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PauseLayer" parent="." instance=ExtResource( 12 )]
+[node name="PauseLayer" parent="." instance=ExtResource( 13 )]
 
-[node name="Interface" parent="." instance=ExtResource( 13 )]
+[node name="Interface" parent="." instance=ExtResource( 14 )]
 
 rect/scale = Vector2( 0.15, 0.15 )
 margin/left = -320.0
@@ -118,10 +124,6 @@ margin/bottom = -104.0
 [node name="ProgressBar" parent="Interface/IntrefaceHolder/bars/life"]
 
 range/value = 100.0
-
-[node name="TextureFrame" parent="Interface/IntrefaceHolder/MarginContainer"]
-
-stretch_mode = 0
 
 [node name="Timer" type="Timer" parent="."]
 
