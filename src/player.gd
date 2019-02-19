@@ -4,7 +4,7 @@ const UP = Vector2(0, -1)
 const MAX_SPEED = 200
 const ACCELERATION = 50
 const GRAVITY = 25
-const JUMP_HEIGHT = 780
+const JUMP_HEIGHT = 30
 
 var life = 100
 var motion = Vector2()
@@ -13,6 +13,10 @@ var friction = false
 var isFalling = false
 var startFallingValue
 var isDied = false
+
+var jumpTime = 0
+var shouldAddToJumpTime = false
+var isJumpingNow = false
 
 func _ready():
 	set_fixed_process(true)
@@ -26,10 +30,7 @@ func _fixed_process(delta):
 			
 	walk()
 	
-	if is_move_and_slide_on_floor():
-		jump()
-	else:
-		jumpAndFall()
+	jump(delta)
 		
 	takeFallDamage()
 
@@ -44,7 +45,7 @@ func _fixed_process(delta):
 	
 ##############################################################################
 	
-func walk():
+func walk():	
 	if Input.is_action_pressed("ui_left"):
 		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED)
 		
@@ -61,11 +62,29 @@ func walk():
 		friction = true
 		get_node("Sprite").play("idle")
 	
-func jump():
+func jump(delta):
 	if Input.is_action_pressed("ui_up"):
-			motion.y = -JUMP_HEIGHT
-	if friction == true:
-		motion.x = lerp(motion.x, 0, 0.2)
+		if is_move_and_slide_on_floor():
+			isJumpingNow = true
+			jumpTime = 0
+		else:
+			if jumpTime < 0.5:
+				jumpTime += delta
+			else:
+				isJumpingNow = false
+	else:
+		if isJumpingNow:
+			isJumpingNow = false
+			
+	if isJumpingNow:
+		motion.y -= jumpTime * JUMP_HEIGHT
+		
+	jumpAndFall()
+	
+	print("shouldAddToJumpTime: ", shouldAddToJumpTime)
+	print("jumpTime: ", jumpTime)
+	print("motion.y: ", motion.y)
+			
 		
 func jumpAndFall():
 	if motion.y < 0:
@@ -105,3 +124,21 @@ func takeFallDamage():
 
 func _on_Timer_timeout():
 	get_tree().change_scene("res://GameOverScreen.tscn")
+	
+	#if shouldAddToJumpTime:
+		#jumpTime += delta
+	
+	#if is_move_and_slide_on_floor():
+		#if Input.is_action_pressed("ui_up"):
+			#shouldAddToJumpTime = true
+			
+	#if !Input.is_action_pressed("ui_up"):
+		#if shouldAddToJumpTime == true:
+			#motion.y = -jumpTime
+			#jumpTime = 0
+		#shouldAddToJumpTime = false
+		
+	#if jumpTime == 700:
+		#motion.y = 700
+		#shouldAddToJumpTime = false
+		#jumpTime = 0
