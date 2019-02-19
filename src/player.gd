@@ -3,7 +3,7 @@ extends KinematicBody2D
 const UP = Vector2(0, -1)
 const MAX_SPEED = 200
 const ACCELERATION = 50
-const GRAVITY = 25
+const GRAVITY = 35
 const JUMP_HEIGHT = 30
 
 var life = 100
@@ -60,6 +60,7 @@ func walk():
 		
 	else:
 		friction = true
+		motion.x = lerp(motion.x, 0, 0.2)
 		get_node("Sprite").play("idle")
 	
 func jump(delta):
@@ -68,7 +69,7 @@ func jump(delta):
 			isJumpingNow = true
 			jumpTime = 0
 		else:
-			if jumpTime < 0.5:
+			if jumpTime < 0.09:
 				jumpTime += delta
 			else:
 				isJumpingNow = false
@@ -77,9 +78,10 @@ func jump(delta):
 			isJumpingNow = false
 			
 	if isJumpingNow:
-		motion.y -= jumpTime * JUMP_HEIGHT
+		motion.y =  -(delta * JUMP_HEIGHT * 15000 * jumpTime)
 		
-	jumpAndFall()
+	if !is_move_and_slide_on_floor():
+		jumpAndFall()
 	
 	print("shouldAddToJumpTime: ", shouldAddToJumpTime)
 	print("jumpTime: ", jumpTime)
