@@ -5,10 +5,10 @@
 [ext_resource path="res://Sprites/Tiles/brick.tres" type="TileSet" id=3]
 [ext_resource path="res://Portal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Zombie.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ball.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/coins.gd" type="Script" id=7]
-[ext_resource path="res://src/coin.gd" type="Script" id=8]
-[ext_resource path="res://Sprites/Interface/coin.tex" type="Texture" id=9]
+[ext_resource path="res://src/coins.gd" type="Script" id=6]
+[ext_resource path="res://src/coin.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/Interface/coin.tex" type="Texture" id=8]
+[ext_resource path="res://src/balls.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -91,78 +91,10 @@ transform/pos = Vector2( 512, 1440 )
 
 transform/pos = Vector2( 512, 384 )
 
-[node name="ballRain" type="Node2D" parent="."]
-
-editor/display_folded = true
-transform/pos = Vector2( 64, -2168 )
-
-[node name="ball1" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -160, 64 )
-
-[node name="ball2" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -32, 128 )
-
-[node name="ball3" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -64, -64 )
-
-[node name="ball11" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( 416, 1056 )
-
-[node name="ball12" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -416, -1344 )
-
-[node name="ball13" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -32, -1472 )
-
-[node name="ball14" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -288, -1568 )
-
-[node name="ball15" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( 0, -1664 )
-
-[node name="ball4" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -256, -96 )
-
-[node name="ball5" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -64, -192 )
-
-[node name="ball6" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -192, -224 )
-
-[node name="ball7" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( 64, -320 )
-
-[node name="ball8" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -288, -480 )
-
-[node name="ball9" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( 0, -832 )
-
-[node name="ball10" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -256, -1088 )
-
-[node name="ball" parent="ballRain" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( -288, 64 )
-
 [node name="coins" type="Node" parent="."]
 
-script/script = ExtResource( 7 )
+editor/display_folded = true
+script/script = ExtResource( 6 )
 
 [node name="coin1" type="Area2D" parent="coins"]
 
@@ -177,7 +109,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -186,7 +118,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin1"]
@@ -209,7 +141,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -218,7 +150,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin2"]
@@ -241,7 +173,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -250,7 +182,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin3"]
@@ -273,7 +205,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -282,7 +214,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin4"]
@@ -305,7 +237,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -314,7 +246,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin5"]
@@ -337,7 +269,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -346,7 +278,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin6"]
@@ -369,7 +301,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -378,7 +310,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin7"]
@@ -401,7 +333,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -410,7 +342,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin8"]
@@ -433,7 +365,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -442,7 +374,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin9"]
@@ -465,7 +397,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -474,7 +406,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin10"]
@@ -497,7 +429,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -506,7 +438,7 @@ __meta__ = {
 
 transform/pos = Vector2( -32, -32 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coins/coin11"]
@@ -515,6 +447,24 @@ visibility/visible = false
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="balls" type="Node2D" parent="."]
+
+script/script = ExtResource( 9 )
+maxNumberOfBalls = 10
+maxRandomX = 0
+minRandomX = -400
+maxRandomY = 0
+minRandomY = -3000
+
+[node name="Timer" type="Timer" parent="balls"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="balls/Timer" to="balls" method="_on_Timer_timeout"]
 
 
 [editable path="player"]

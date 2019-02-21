@@ -69,7 +69,7 @@ func jump(delta):
 			isJumpingNow = true
 			jumpTime = 0
 		else:
-			if jumpTime < 0.09:
+			if jumpTime < 0.13:
 				jumpTime += delta
 			else:
 				isJumpingNow = false
@@ -78,14 +78,10 @@ func jump(delta):
 			isJumpingNow = false
 			
 	if isJumpingNow:
-		motion.y =  -(delta * JUMP_HEIGHT * 15000 * jumpTime)
+		motion.y =  -(JUMP_HEIGHT * 220 * jumpTime)
 		
 	if !is_move_and_slide_on_floor():
 		jumpAndFall()
-	
-	print("shouldAddToJumpTime: ", shouldAddToJumpTime)
-	print("jumpTime: ", jumpTime)
-	print("motion.y: ", motion.y)
 			
 		
 func jumpAndFall():
@@ -126,21 +122,3 @@ func takeFallDamage():
 
 func _on_Timer_timeout():
 	get_tree().change_scene("res://GameOverScreen.tscn")
-	
-	#if shouldAddToJumpTime:
-		#jumpTime += delta
-	
-	#if is_move_and_slide_on_floor():
-		#if Input.is_action_pressed("ui_up"):
-			#shouldAddToJumpTime = true
-			
-	#if !Input.is_action_pressed("ui_up"):
-		#if shouldAddToJumpTime == true:
-			#motion.y = -jumpTime
-			#jumpTime = 0
-		#shouldAddToJumpTime = false
-		
-	#if jumpTime == 700:
-		#motion.y = 700
-		#shouldAddToJumpTime = false
-		#jumpTime = 0
