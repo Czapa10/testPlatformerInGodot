@@ -8,7 +8,7 @@ export var minRandomY = 0
 
 var numberOfBallsInTheWorld = 0
 
-var ballScene = preload("res://ball.tscn")
+const BALL_SCENE = preload("res://ball.tscn")
 	
 func _ready():
 	if maxRandomX == 0:
@@ -18,7 +18,7 @@ func _ready():
 
 func _on_Timer_timeout():
 	if numberOfBallsInTheWorld < maxNumberOfBalls:
-		var ballNode = ballScene.instance()
+		var ballNode = BALL_SCENE.instance()
 		ballNode.set_pos(Vector2(randi()%( maxRandomX - minRandomX) + minRandomX , randi()%( maxRandomY - minRandomY) + minRandomY ) )
 		add_child(ballNode)
 		numberOfBallsInTheWorld += 1

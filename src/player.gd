@@ -6,6 +6,9 @@ const ACCELERATION = 50
 const GRAVITY = 35
 const JUMP_HEIGHT = 30
 
+const FIREBALL_SCENE = preload("res://fireball.tscn")
+var isReadyToShotFireball = true
+
 var life = 100
 var motion = Vector2()
 var friction = false
@@ -33,15 +36,12 @@ func _fixed_process(delta):
 	jump(delta)
 		
 	takeFallDamage()
+	
+	fireballs()
 
 	motion = move_and_slide(motion, UP)
 	
-	if get_pos().y > 2500:
-		set_pos(Vector2(get_pos().x, -2000))
-		
-		
-	if get_pos().y < -150 && get_pos().x > 2352:
-		set_pos(Vector2(1300 ,get_pos().y))
+	antichamber()
 	
 ##############################################################################
 	
@@ -122,3 +122,21 @@ func takeFallDamage():
 
 func _on_Timer_timeout():
 	get_tree().change_scene("res://GameOverScreen.tscn")
+	
+func antichamber():
+	if get_pos().y > 2500:
+		set_pos(Vector2(get_pos().x, -2000))
+		
+	if get_pos().y < -150 && get_pos().x > 2352:
+		set_pos(Vector2(1300 ,get_pos().y))
+		
+func fireballs():
+	if Input.is_action_pressed("shoot_fireball") && isReadyToShotFireball:
+		var fireball = FIREBALL_SCENE.instance()
+		get_parent().add_child(fireball)
+		fireball.set_pos(get_node("Position2D").get_global_pos())
+		get_node("FireBallTimer").start()
+		isReadyToShotFireball = false
+		
+func _on_FireBallTimer_timeout():
+	isReadyToShotFireball = true

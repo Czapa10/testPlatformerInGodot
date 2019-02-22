@@ -9,8 +9,8 @@
 [ext_resource path="res://Sprites/oldPlayer/Run3.tex" type="Texture" id=7]
 [ext_resource path="res://Sprites/oldPlayer/Run4.tex" type="Texture" id=8]
 [ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=9]
-[ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=10]
-[ext_resource path="res://Sprites/oldPlayer/blood.tex" type="Texture" id=11]
+[ext_resource path="res://Sprites/oldPlayer/blood.tex" type="Texture" id=10]
+[ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=11]
 [ext_resource path="res://Sprites/others/Sky.png" type="Texture" id=12]
 [ext_resource path="res://PauseScreen.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Interface.tscn" type="PackedScene" id=14]
@@ -41,12 +41,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "falling",
+"name": "died",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "died",
+"name": "falling",
 "speed": 5.0
 } ]
 
@@ -132,7 +132,20 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
+[node name="Position2D" type="Position2D" parent="."]
+
+transform/pos = Vector2( 29, 10 )
+
+[node name="FireBallTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.45
+one_shot = false
+autostart = false
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="timeout" from="FireBallTimer" to="." method="_on_FireBallTimer_timeout"]
 
 
 [editable path="Interface"]
