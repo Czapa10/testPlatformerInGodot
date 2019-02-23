@@ -25,10 +25,6 @@ transform/pos = Vector2( 160, 1376 )
 
 z/z = 100
 
-[node name="Interface" parent="player"]
-
-editor/display_folded = true
-
 [node name="Dirt" type="TileMap" parent="."]
 
 z/z = -10

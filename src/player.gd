@@ -52,11 +52,20 @@ func walk():
 		get_node("Sprite").set_flip_h(true)
 		get_node("Sprite").play("run")
 		
+		if sign (get_node("Position2D").get_pos().x) == 1:
+			var posX = get_node("Position2D").get_pos().x
+			get_node("Position2D").set_pos(Vector2(-posX, get_node("Position2D").get_pos().y))
+		
 	elif Input.is_action_pressed("ui_right"):
 		motion.x = min(motion.x + ACCELERATION, MAX_SPEED)
 		
 		get_node("Sprite").set_flip_h(false)
 		get_node("Sprite").play("run")
+		
+		if sign (get_node("Position2D").get_pos().x) == -1:
+			var posX = get_node("Position2D").get_pos().x
+			get_node("Position2D").set_pos(Vector2(-posX, get_node("Position2D").get_pos().y))
+			
 		
 	else:
 		friction = true
@@ -133,8 +142,15 @@ func antichamber():
 func fireballs():
 	if Input.is_action_pressed("shoot_fireball") && isReadyToShotFireball:
 		var fireball = FIREBALL_SCENE.instance()
-		get_parent().add_child(fireball)
+		
 		fireball.set_pos(get_node("Position2D").get_global_pos())
+		if sign (get_node("Position2D").get_pos().x) == 1:
+			fireball._set_fireball_direction(1)
+		else:
+			fireball._set_fireball_direction(-1)
+			
+		get_parent().add_child(fireball)
+		
 		get_node("FireBallTimer").start()
 		isReadyToShotFireball = false
 		
