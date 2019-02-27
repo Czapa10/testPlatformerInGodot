@@ -1,16 +1,16 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://src/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/oldPlayer/Idle0.tex" type="Texture" id=2]
 [ext_resource path="res://Sprites/oldPlayer/Jump1.tex" type="Texture" id=3]
-[ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=4]
-[ext_resource path="res://Sprites/oldPlayer/blood.tex" type="Texture" id=5]
-[ext_resource path="res://Sprites/oldPlayer/Run0.tex" type="Texture" id=6]
-[ext_resource path="res://Sprites/oldPlayer/Run1.tex" type="Texture" id=7]
-[ext_resource path="res://Sprites/oldPlayer/Run2.tex" type="Texture" id=8]
-[ext_resource path="res://Sprites/oldPlayer/Run3.tex" type="Texture" id=9]
-[ext_resource path="res://Sprites/oldPlayer/Run4.tex" type="Texture" id=10]
-[ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=11]
+[ext_resource path="res://Sprites/oldPlayer/blood.tex" type="Texture" id=4]
+[ext_resource path="res://Sprites/oldPlayer/Run0.tex" type="Texture" id=5]
+[ext_resource path="res://Sprites/oldPlayer/Run1.tex" type="Texture" id=6]
+[ext_resource path="res://Sprites/oldPlayer/Run2.tex" type="Texture" id=7]
+[ext_resource path="res://Sprites/oldPlayer/Run3.tex" type="Texture" id=8]
+[ext_resource path="res://Sprites/oldPlayer/Run4.tex" type="Texture" id=9]
+[ext_resource path="res://Sprites/oldPlayer/Run7.tex" type="Texture" id=10]
+[ext_resource path="res://Sprites/oldPlayer/Jump3.tex" type="Texture" id=11]
 [ext_resource path="res://Sprites/others/Sky.png" type="Texture" id=12]
 [ext_resource path="res://PauseScreen.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Interface.tscn" type="PackedScene" id=14]
@@ -36,19 +36,24 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "falling",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
 "name": "died",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 15, 25 )
 
 [node name="player" type="KinematicBody2D"]
 
@@ -144,9 +149,30 @@ wait_time = 0.45
 one_shot = false
 autostart = false
 
+[node name="hitBox" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 2 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+
+visibility/visible = false
+transform/pos = Vector2( 0, 2 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="timeout" from="FireBallTimer" to="." method="_on_FireBallTimer_timeout"]
+
+[connection signal="body_enter" from="hitBox" to="." method="_on_hitBox_body_enter"]
 
 
 [editable path="Interface"]

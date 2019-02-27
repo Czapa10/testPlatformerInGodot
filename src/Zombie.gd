@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 22
 var startPosX
+var vitality = 100
 
 enum {IDLE, RIGHT, LEFT}
 var moveState = RIGHT
@@ -27,4 +28,12 @@ func _fixed_process(delta):
 		get_node("AnimatedSprite").set_flip_h(true)
 	
 	move_and_slide(motion)
-	
+
+func _on_hitbox_area_enter( area ):
+	if area.is_in_group("fireballs"):
+		vitality -= 30
+		_die()
+		
+func _die():
+	if vitality <= 0:
+		queue_free()

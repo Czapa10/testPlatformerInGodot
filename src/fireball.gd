@@ -2,7 +2,8 @@ extends Area2D
 
 const SPEED = 570
 var velocity = Vector2()
-var direction = 1 
+var direction = 1
+
 
 func _ready():
 	set_fixed_process(true)
@@ -10,7 +11,7 @@ func _ready():
 func _fixed_process(delta):
 	velocity.x = SPEED * delta * direction
 	translate(velocity)
-
+	
 func _set_fireball_direction(dir):
 	direction = dir
 	if dir == -1:

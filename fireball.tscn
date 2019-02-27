@@ -8,7 +8,9 @@
 custom_solver_bias = 0.0
 extents = Vector2( 17, 10 )
 
-[node name="fireball" type="Area2D"]
+[node name="fireball" type="Area2D" groups=[
+"fireballs",
+]]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
