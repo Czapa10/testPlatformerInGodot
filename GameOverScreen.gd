@@ -1,5 +1,8 @@
 extends Control
 
+func _ready():
+	playerData.vitality = 100
+
 func _on_PlayAgainButton_pressed():
 	get_tree().change_scene("res://World.tscn")
 

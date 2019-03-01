@@ -11,3 +11,4 @@ func _fixed_process(delta):
 	for body in bodies:
 		if body.get_name() == "player":
 			get_tree().change_scene(nextWorld)
+			

@@ -9,7 +9,6 @@ const JUMP_HEIGHT = 30
 const FIREBALL_SCENE = preload("res://fireball.tscn")
 var isReadyToShotFireball = true
 
-var life = 100
 var motion = Vector2()
 var friction = false
 
@@ -110,13 +109,13 @@ func slide():
 func takeDamage():
 	takeFallDamage()
 	
-	if life < 0:
-		life = 0
+	if playerData.vitality < 0:
+		playerData.vitality = 0
 		
-	get_node("Interface/IntrefaceHolder/bars/life/heartCounter/CenterContainer/Label").set_text(str(int(life) ) )
-	get_node("Interface/IntrefaceHolder/bars/life/ProgressBar").set_value(life)
+	get_node("Interface/IntrefaceHolder/bars/life/heartCounter/CenterContainer/Label").set_text(str(int(playerData.vitality) ) )
+	get_node("Interface/IntrefaceHolder/bars/life/ProgressBar").set_value(playerData.vitality)
 		
-	if life <= 0:
+	if playerData.vitality <= 0:
 		get_node("Timer").start()
 		get_node("Sprite").play("died")
 		isDied = true
@@ -126,7 +125,7 @@ func takeFallDamage():
 	if is_move_and_slide_on_floor():
 		if isFalling:
 			if get_pos().y - startFallingValue > 450:
-				life -= (get_pos().y - startFallingValue - 450) / 3.5	
+				playerData.vitality -= (get_pos().y - startFallingValue - 450) / 3.5	
 				isFalling = false
 	else:
 		if motion.y > 0 && !isFalling:
@@ -164,6 +163,6 @@ func _on_FireBallTimer_timeout():
 
 func _on_hitBox_body_enter( body ):
 	if body.is_in_group("zombie"):
-		life -= 40
+		playerData.vitality -= 40
 		motion.x += 1700 * (-1 if body.get_pos().x > get_pos().x else 1)
 		motion.y -= 400
