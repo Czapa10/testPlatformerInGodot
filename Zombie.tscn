@@ -48,6 +48,9 @@ script/script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+speed = 35
+vitality = 100
+size = Vector2( 1, 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
@@ -56,12 +59,14 @@ animation = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+visibility/visible = false
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="hitbox" type="Area2D" parent="."]
 
+visibility/visible = false
 transform/scale = Vector2( 0.5, 1 )
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
@@ -81,6 +86,7 @@ _update_shape_index = 0
 
 [node name="RayCastToFloor" type="RayCast2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 12, 0 )
 enabled = true
 cast_to = Vector2( 0, 45 )
@@ -89,8 +95,10 @@ type_mask = 15
 
 [node name="RayCastToWall" type="RayCast2D" parent="."]
 
-enabled = false
-cast_to = Vector2( 50, 0 )
+visibility/visible = false
+transform/pos = Vector2( 15, 0 )
+enabled = true
+cast_to = Vector2( 6, 0 )
 layer_mask = 1
 type_mask = 15
 

@@ -1,7 +1,11 @@
 extends Node
 
-var vitality = 100
-var coins = 0
+var vitality
+var coins
 
 func _ready():
-	pass
+	resetData()
+
+func resetData():
+	vitality = 100
+	coins = 0
