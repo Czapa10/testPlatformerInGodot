@@ -166,3 +166,16 @@ func _on_hitBox_body_enter( body ):
 		playerData.vitality -= 40
 		motion.x += 1700 * (-1 if body.get_pos().x > get_pos().x else 1)
 		motion.y -= 400
+		
+		
+func save():
+	var save_dict = {
+		pos={
+			x = get_pos().x,
+			y = get_pos().y
+		},
+		vitality = playerData.vitality,
+		coins = playerData.coins
+	}
+	
+	return save_dict

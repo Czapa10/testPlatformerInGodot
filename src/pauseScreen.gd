@@ -19,5 +19,6 @@ func switchingBetweenPauseAndGame():
 
 
 func _on_MainMenuButton1_pressed():
+	saveAndLoad.save_game()
 	get_tree().set_pause(false)
 	get_tree().change_scene("res://Start menu.tscn")
